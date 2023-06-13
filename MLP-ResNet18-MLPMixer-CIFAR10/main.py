@@ -78,18 +78,7 @@ if __name__ == "__main__":
 
     # Check for the device
     if (args.device == "cuda") and not torch.cuda.is_available():
-        warnings.warn(
-            "CUDA is not available, make that your environment is "
-            "running on GPU (e.g. in the Notebook Settings in Google Colab). "
-            'Forcing device="cpu".'
-        )
         args.device = "cpu"
-
-    if args.device == "cpu":
-        warnings.warn(
-            "You are about to run on CPU, and might run out of memory "
-            "shortly. You can try setting batch_size=1 to reduce memory usage."
-        )
 
     # Seed the experiment, for repeatability
     seed_experiment(args.seed)

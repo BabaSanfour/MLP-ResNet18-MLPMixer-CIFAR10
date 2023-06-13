@@ -13,13 +13,7 @@ class Linear(nn.Module):
           dimensions including none and :math:`H_{in} = \text{in\_features}`.
         - Output: :math:`(*, H_{out})` where all but the last dimension
           are the same shape as the input and :math:`H_{out} = \text{out\_features}`.
-       
-        >>> m = nn.Linear(20, 30)
-        >>> input = torch.randn(128, 20)
-        >>> output = m(input)
-        >>> print(output.size())
-        torch.Size([128, 30])
-    """
+           """
     def __init__(self, in_features: int, out_features: int) -> None:
         super(Linear, self).__init__()
         self.weight = nn.Parameter(torch.Tensor( out_features, in_features))
@@ -100,5 +94,4 @@ class MLP(torch.nn.Module):
             X = layer.forward(X)
             X = self.activation_fn(self.activation, X)
         X = self.output_layer.forward(X)
-
         return X

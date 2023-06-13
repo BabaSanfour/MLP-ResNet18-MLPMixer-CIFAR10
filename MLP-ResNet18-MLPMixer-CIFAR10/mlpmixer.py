@@ -16,8 +16,8 @@ class PatchEmbed(nn.Module):
         self.grid_size = img_size // patch_size
         self.num_patches = self.grid_size * self.grid_size
         print(self.grid_size*self.grid_size)
-        # Uncomment this line and replace ? with correct values
         self.proj = nn.Conv2d(in_chans, embed_dim, kernel_size=self.patch_size, stride=self.patch_size)
+
     def forward(self, x):
         """
         :param x: image tensor of shape [batch, channels, img_size, img_size]
@@ -121,11 +121,6 @@ class MLPMixer(nn.Module):
         """ MLPMixer forward
         :param images: [batch, 3, img_size, img_size]
         """
-        # step1: Go through the patch embedding
-        # step 2 Go through the mixer blocks
-        # step 3 go through layer norm
-        # step 4 Global averaging spatially
-        # Classification
         x = self.patchemb(images)
         x = self.blocks(x)
         x = self.norm(x)

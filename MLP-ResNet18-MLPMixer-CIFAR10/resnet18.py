@@ -19,7 +19,6 @@ class BasicBlock(nn.Module):
             :param stride: The stride of first conv
         """
         super(BasicBlock, self).__init__()
-        # Uncomment the following lines, replace the ? with correct values.
         self.conv1 = nn.Conv2d(
            in_planes, planes, kernel_size=3, stride=stride, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(planes)
@@ -36,19 +35,12 @@ class BasicBlock(nn.Module):
            )
 
     def forward(self, x):
-        # 1. Go through conv1, bn1, relu
-        # 2. Go through conv2, bn
-        # 3. Combine with shortcut output, and go through relu
-
         out = self.conv1(x)
         out = self.bn1(out)
         out = nn.ReLU(inplace=True)(out)
-
         out = self.conv2(out)
         out = self.bn2(out)
-
         identity = self.shortcut(x)
-
         out += identity
         out = nn.ReLU(inplace=True)(out)
 
@@ -57,7 +49,6 @@ class BasicBlock(nn.Module):
 class ResNet18(nn.Module):
     def __init__(self, num_classes=10):
         super(ResNet18, self).__init__()
-        # Uncomment the following lines and replace the ? with correct values
         self.conv1 = nn.Conv2d(3, 64, kernel_size=3,
                               stride=1, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(64)
